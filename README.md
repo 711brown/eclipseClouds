@@ -40,3 +40,4 @@ Define the bounding box for the visual extent of the output.
 ./.venv/bin/activate
 python main.py [PROFILENAME]
 ```
+`--model-run` optional parameter in `YYYYMMDDTHHMM` format -- sepcify the model run you want to use directly. Good for backfills

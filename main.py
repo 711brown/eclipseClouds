@@ -9,6 +9,8 @@ import numpy as np
 from helper import adjust_longitude, download_gfs, get_closest_model_run, get_eclipse_forecast_hour
 import json
 import click
+from datetime import timezone
+
 
 def get_config(profileName): 
     with open('config.json') as cfile:
@@ -20,7 +22,8 @@ def get_config(profileName):
 
 @click.command()
 @click.argument('profile_mame')
-def make_map(profile_mame):
+@click.option('--model-run', type=click.DateTime(formats=["%Y%m%dT%H%M"]), default=None)
+def make_map(profile_mame, model_run=None):
     conf = get_config(profile_mame)
     # CONUS
     lon_min = conf['lonMin']
@@ -34,7 +37,10 @@ def make_map(profile_mame):
     plt.figure(dpi=300)
     ax = plt.axes(projection=projection, frameon=True)
 
-    model_run = get_closest_model_run()
+    if not model_run:
+        model_run = get_closest_model_run()
+    else:
+        model_run = model_run.replace(tzinfo=timezone.utc)
     forecast_hour = get_eclipse_forecast_hour(model_run)
     data_path = download_gfs(model_run, forecast_hour)
 
