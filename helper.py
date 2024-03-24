@@ -34,7 +34,7 @@ def get_closest_model_run():
 
 def get_eclipse_forecast_hour(model_run_time):
     eclipseDate = datetime(2024, 4, 8, 18, 0, 0, tzinfo=timezone.utc)
-    return (eclipseDate - model_run_time).days * 24
+    return int(((eclipseDate - model_run_time).days * 24) + ((eclipseDate - model_run_time).seconds / 60 / 60) )
 
 def download_gfs(modelDateTime, forecastHour):
     modelRunYear = modelDateTime.strftime('%Y')
