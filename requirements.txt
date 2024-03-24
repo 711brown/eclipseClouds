@@ -1,0 +1,7 @@
+cartopy
+matplotlib
+xarray
+xarray[io]
+requests
+numpy
+#sudo apt-get install libeccodes-dev
