@@ -1,0 +1,41 @@
+{
+    "CONUS": {
+        "name": "CONUS",
+        "lonMin": -67.0,
+        "lonMax": -125.0,
+        "latMin": 50.0,
+        "latMax": 23.0,
+        "markers": [
+        ],
+        "showCounties": false
+    },
+    "OKTX": {
+        "name": "OKTX",
+        "lonMin": -93.449,
+        "lonMax": -98.266,
+        "latMin": 35.47,
+        "latMax": 32.29,
+        "markers": [
+            {
+                "lat": 33.639885341266954,
+                "lon": -95.52387812563639
+            }
+        ],
+        "showCounties": true
+    },
+    "EastUSA": {
+        "name": "EastUSA",
+        "lonMin": -71.6,
+        "lonMax": -102.36,
+        "latMin": 43.61,
+        "latMax": 29,
+        "markers": [
+            {
+                "lat": 33.639885341266954,
+                "lon": -95.52387812563639
+            }
+        ],
+        "showCounties": true
+    }
+
+}

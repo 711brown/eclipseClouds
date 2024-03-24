@@ -4,4 +4,6 @@ xarray
 xarray[io]
 requests
 numpy
+click
+cfgrib
 #sudo apt-get install libeccodes-dev

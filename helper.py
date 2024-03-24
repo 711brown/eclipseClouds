@@ -37,24 +37,23 @@ def get_eclipse_forecast_hour(model_run_time):
     return (eclipseDate - model_run_time).days * 24
 
 def download_gfs(modelDateTime, forecastHour):
-    print(forecastHour)
     modelRunYear = modelDateTime.strftime('%Y')
     modelRunMonth = modelDateTime.strftime('%m')
     modelRunDay = modelDateTime.strftime('%d')
     modelRunHour = modelDateTime.strftime('%H')
     forecastHourPadded = str(forecastHour).zfill(3)
 
-    filename = f'gfs.t{modelRunHour}z.pgrb2.0p25.f{forecastHourPadded}'
+    outputFileName = f'{modelRunYear}{modelRunMonth}{modelRunDay}{modelRunHour}{forecastHourPadded}.grib'
 
-    if not os.path.isfile(filename):
+    if not os.path.isfile(outputFileName):
         print('Must Download')
-        url = f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.{modelRunYear}{modelRunMonth}{modelRunDay}/{modelRunHour}/atmos/{filename}'
+        url = f'https://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gfs.{modelRunYear}{modelRunMonth}{modelRunDay}/{modelRunHour}/atmos/gfs.t{modelRunHour}z.pgrb2.0p25.f{forecastHourPadded}'
         print(url)
         session = requests.Session()
         try: 
             response = session.get(url)
             response.raise_for_status
-            with open(f'{filename}.grib', 'wb') as f:
+            with open(outputFileName, 'wb') as f:
                 f.write(response.content)
         except HTTPError:
             print('Failed to download!')
@@ -62,5 +61,5 @@ def download_gfs(modelDateTime, forecastHour):
 
     else: 
         print('Already Downloaded File')
-    return f'{filename}.grib'
+    return outputFileName
 
